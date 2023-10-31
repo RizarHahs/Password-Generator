@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Random Password</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        Generate a <br />
+        <span>Random Password</span>
+      </h1>
+      <div class="display">
+        <input type="text" placeholder="Password" id="password" />
+        <img onclick="copyText()" src="images/copy.png" />
+      </div>
+      <button onclick="createPassword()">
+        <img src="images/generate.png" />Generate Password
+      </button>
+    </div>
+
+    <script>
+      const passwordBox = document.getElementById("password");
+      const passLength = 12;
+
+      const upperCase = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
+      const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+      const numbers = "0123456789";
+      const symbol = "!@#$%^&*()-_=+{}[]|\;:,.?/><";
+
+      const allCharacter = upperCase + lowerCase + numbers + symbol;
+
+      function createPassword() {
+        let password = "";
+        while (passLength > password.length) {
+          password +=
+            allCharacter[Math.floor(Math.random() * allCharacter.length)];
+        }
+        passwordBox.value = password;
+      }
+      function copyText() {
+        passwordBox.select();
+        document.execCommand("copy");
+      }
+    </script>
+  </body>
+</html>
